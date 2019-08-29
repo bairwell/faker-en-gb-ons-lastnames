@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="codesniffing-ruleset">
+    <description>CodeSniffing Ruleset.</description>
+    <arg name="basepath" value="."/>
+    <arg name="extensions" value="php"/>
+    <arg name="parallel" value="80"/>
+    <arg name="cache" value=".php_cs.cache"/>
+    <arg name="colors"/>
+    <!-- Show progress and sniff codes in all reports -->
+    <arg value="ps"/>
+
+    <!-- Directories to be checked -->
+    <file>src</file>
+    <file>tests</file>
+    <file>config</file>
+    <file>bin/src</file>
+    <exclude-pattern>./web/*</exclude-pattern>
+    <exclude-pattern>./vendor/*</exclude-pattern>
+    <exclude-pattern>./.idea/</exclude-pattern>
+
+    <!-- Load the additional coding standards -->
+    <config name="installed_paths"
+            value="vendor/sirbrillig/phpcs-variable-analysis/VariableAnalysis,vendor/doctrine/coding-standard/lib"/>
+
+
+    <!-- Code MUST follow all rules outlined in PSR-12. -->
+    <rule ref="PSR12">
+        <!-- messes up nullable properties -->
+        <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
+    </rule>
+
+
+    <!-- ensure we are looking for Linux line endings -->
+    <rule ref="Generic.Files.LineEndings">
+        <properties>
+            <property name="eolChar" value="\n"/>
+        </properties>
+    </rule>
+
+    <rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+        <!-- broken in php 7.4: https://github.com/slevomat/coding-standard/issues/731 -->
+        <exclude name="SlevomatCodingStandard.TypeHints.TypeHintDeclaration.MissingReturnTypeHint"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalFunctions.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedGlobalConstants.NonFullyQualified"/>
+        <exclude name="SlevomatCodingStandard.Arrays.TrailingArrayComma.MissingTrailingComma"/>
+        <exclude name="SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.RequireYodaComparison.RequiredYodaComparison"/>
+        <exclude
+                name="SlevomatCodingStandard.TypeHints.DeclareStrictTypes.IncorrectWhitespaceBetweenOpenTagAndDeclare"/>
+        <exclude
+                name="SlevomatCodingStandard.ControlStructures.RequireMultiLineTernaryOperator.MultiLineTernaryOperatorNotUsed"/>
+        <exclude
+                name="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameInAnnotation.NonFullyQualifiedClassName"/>
+        <exclude name="SlevomatCodingStandard.Functions.TrailingCommaInCall.MissingTrailingComma"/>
+        <exclude name="SlevomatCodingStandard.ControlStructures.NewWithoutParentheses.UselessParentheses"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
+        <exclude name="SlevomatCodingStandard.Files.TypeNameMatchesFileName.NoMatchBetweenTypeNameAndFileName"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly.ReferenceViaFullyQualifiedName"/>
+        <exclude name="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions.NonFullyQualifiedException"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHintSpacing.WhitespaceBeforeColon"/>
+        <exclude name="SlevomatCodingStandard.Classes.EmptyLinesAroundClassBraces.NoEmptyLineBeforeClosingBrace"/>
+        <exclude name="SlevomatCodingStandard.Functions.UnusedParameter.UnusedParameter"/>
+        <exclude name="SlevomatCodingStandard.Commenting.DocCommentSpacing.IncorrectLinesCountAfterLastContent"/>
+        <exclude name="SlevomatCodingStandard.TypeHints.DisallowMixedTypeHint.DisallowedMixedTypeHint"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
+        <exclude
+                name="SlevomatCodingStandard.Operators.DisallowIncrementAndDecrementOperators.DisallowedPostIncrementOperator"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousTraitNaming.SuperfluousSuffix"/>
+        <exclude
+                name="SlevomatCodingStandard.ControlStructures.DisallowShortTernaryOperator.DisallowedShortTernaryOperator"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
+        <exclude name="SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable"/>
+    </rule>
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+        <properties>
+            <property name="searchAnnotations" value="true"/>
+        </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+        <properties>
+            <property name="traversableTypeHints" type="array" value="Doctrine\Common\Collections\Collection"/>
+            <property name="allAnnotationsAreUseful" value="true"/>
+            <property
+                    name="usefulAnnotations"
+                    type="array"
+                    value="@covers,
+                @coversDefaultClass,
+                @testWith,
+                @dataProvider,
+                @requires,
+                @testdox
+"/>
+        </properties>
+    </rule>
+</ruleset>
