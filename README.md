@@ -18,5 +18,5 @@ Usage
 =====
 
         $faker=new \Faker\Generator();
-        $faker->addProvider(new \Bairwell\Faker\EnGbOns\Lastnames($faker));
+        $faker->addProvider(new \Bairwell\Faker\EnGbOns\Lastnames\Lastnames($faker));
         $fakeName=$faker->lastName;

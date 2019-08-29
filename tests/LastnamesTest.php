@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Bairwell\Faker\EnGbOns\Tests;
-use Bairwell\Faker\EnGbOns\Lastnames;
+namespace Bairwell\Faker\EnGbOns\Lastnames\Tests;
+use Bairwell\Faker\EnGbOns\Lastnames\Lastnames;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \Bairwell\Faker\EnGbOns\Lastnames
+ * @coversDefaultClass \Bairwell\Faker\EnGbOns\Lastnames\Lastnames
  */
 class LastnamesTest extends TestCase
 {

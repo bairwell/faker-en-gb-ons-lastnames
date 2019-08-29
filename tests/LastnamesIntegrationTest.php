@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Bairwell\Faker\EnGbOns\Tests;
+namespace Bairwell\Faker\EnGbOns\Lastnames\Tests;
 
-use Bairwell\Faker\EnGbOns\Lastnames;
+use Bairwell\Faker\EnGbOns\Lastnames\Lastnames;
 use Faker\Generator;
 use PHPUnit\Framework\TestCase;
 
